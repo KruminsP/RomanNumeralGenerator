@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RomanNumeralGenerator.LogHistory>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>History</h1>
+
+<table class="table table-bordered table-striped" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                Input
+            </th>
+            <th>
+                Output
+            </th>
+            <th>
+                Time
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td width="33%">
+                    @log.Input
+                </td>
+                <td width="33%">
+                    @log.Output
+                </td>
+                <td width="34%">
+                    @log.Time
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
