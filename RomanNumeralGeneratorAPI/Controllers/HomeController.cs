@@ -19,22 +19,14 @@ namespace RomanNumeralGeneratorAPI.Controllers
             return View();
         }
 
-        //GET
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult History()
-        {
-            IEnumerable<LogHistory> history = _context.History;
-            return View(history.Reverse());
-        }
-
-        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Calculate(LogHistory log)
+        public IActionResult Index(LogHistory log)
         {
             if(log.Input is > 1 and <3999)
             {
@@ -42,8 +34,16 @@ namespace RomanNumeralGeneratorAPI.Controllers
                 log.Output = _generator.Generate(log.Input);
                 _context.History.Add(log);
                 _context.SaveChanges();
+                TempData["converted"] = $"{log.Input} in Roman numerals is {log.Output}";
             }
             return View();
+        }
+
+        //GET
+        public IActionResult History()
+        {
+            IEnumerable<LogHistory> history = _context.History;
+            return View(history.Reverse());
         }
     }
 }
