@@ -6,13 +6,11 @@ namespace RomanNumeralGeneratorAPI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly RomanNumeralGeneratorDbContext _context;
-        private readonly Generator _generator;
+        private readonly RomanConverterService _romanConverter;
 
-        public HomeController(RomanNumeralGeneratorDbContext context, Generator generator)
+        public HomeController(RomanConverterService romanConverter)
         {
-            _context = context;
-            _generator = generator;
+            _romanConverter = romanConverter;
         }
         public IActionResult About()
         {
@@ -28,12 +26,9 @@ namespace RomanNumeralGeneratorAPI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LogHistory log)
         {
-            if(log.Input is > 1 and <3999)
+            if(log.Input is > 0 and < 4000)
             {
-                log.Time = DateTime.Now.ToString();
-                log.Output = _generator.Generate(log.Input);
-                _context.History.Add(log);
-                _context.SaveChanges();
+                _romanConverter.AddLog(log);
                 TempData["converted"] = $"{log.Input} in Roman numerals is {log.Output}";
             }
             return View();
@@ -42,7 +37,7 @@ namespace RomanNumeralGeneratorAPI.Controllers
         //GET
         public IActionResult History()
         {
-            IEnumerable<LogHistory> history = _context.History;
+            IEnumerable<LogHistory> history = _romanConverter.History;
             return View(history.Reverse());
         }
     }

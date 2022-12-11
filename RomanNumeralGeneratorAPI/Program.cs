@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RomanNumeralGeneratorDbContext>();
+builder.Services.AddDbContext<RomanConverterService>();
 builder.Services.AddScoped<Generator>();
 
 var app = builder.Build();
