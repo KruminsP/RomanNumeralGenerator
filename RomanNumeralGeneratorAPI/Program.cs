@@ -1,3 +1,4 @@
+using RomanNumeralGenerator;
 using RomanNumeralGenerator.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RomanNumeralGeneratorDbContext>();
+builder.Services.AddScoped<Generator>();
 
 var app = builder.Build();
 
