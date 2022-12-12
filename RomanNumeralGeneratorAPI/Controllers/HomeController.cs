@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RomanNumeralGenerator;
-using RomanNumeralGenerator.Data;
 using RomanNumeralGenerator.Services;
 
 namespace RomanNumeralGeneratorAPI.Controllers

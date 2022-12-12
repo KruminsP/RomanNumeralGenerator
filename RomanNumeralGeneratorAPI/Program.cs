@@ -10,8 +10,7 @@ builder.Services.AddDbContext<IRomanNumeralGeneratorDbContext, RomanNumeralGener
 builder.Services.AddScoped<IDbService, DbService>();
 builder.Services.AddScoped<IEntityService<LogHistory>, EntityService<LogHistory>>();
 builder.Services.AddScoped<ILogHistoryService, LogHistoryService>();
-//builder.Services.AddScoped<RomanConverterService>();
-builder.Services.AddScoped<Generator>();
+builder.Services.AddScoped<IRomanNumeralGenerator, Generator>();
 
 var app = builder.Build();
 

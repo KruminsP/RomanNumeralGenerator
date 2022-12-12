@@ -1,14 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
-using RomanNumeralGenerator.Data;
+﻿using RomanNumeralGenerator.Data;
 
 namespace RomanNumeralGenerator.Services;
 
 public class LogHistoryService : EntityService<LogHistory>, ILogHistoryService
 {
-    private readonly Generator _generator;
+    private readonly IRomanNumeralGenerator _generator;
 
-    public LogHistoryService(IRomanNumeralGeneratorDbContext context, Generator generator) : base(context)
+    public LogHistoryService(IRomanNumeralGeneratorDbContext context, IRomanNumeralGenerator generator) : base(context)
     {
         _generator = generator;
     }
