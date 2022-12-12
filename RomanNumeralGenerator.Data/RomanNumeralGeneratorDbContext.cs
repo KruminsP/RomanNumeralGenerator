@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace RomanNumeralGenerator.Data;
 
-public class RomanNumeralGeneratorDbContext : DbContext
+public class RomanNumeralGeneratorDbContext : DbContext, IRomanNumeralGeneratorDbContext
 {
     private readonly IConfiguration _configuration;
     public DbSet<LogHistory> History { get; set; }

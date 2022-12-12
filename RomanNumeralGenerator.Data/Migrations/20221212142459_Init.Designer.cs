@@ -11,7 +11,7 @@ using RomanNumeralGenerator.Data;
 namespace RomanNumeralGenerator.Data.Migrations
 {
     [DbContext(typeof(RomanNumeralGeneratorDbContext))]
-    [Migration("20221209152510_Init")]
+    [Migration("20221212142459_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

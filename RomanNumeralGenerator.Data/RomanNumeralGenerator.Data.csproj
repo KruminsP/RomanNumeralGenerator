@@ -23,4 +23,8 @@
     <ProjectReference Include="..\RomanNumeralGenerator\RomanNumeralGenerator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

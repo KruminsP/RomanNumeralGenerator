@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RomanNumeralGenerator.Data\RomanNumeralGenerator.Data.csproj" />
+    <ProjectReference Include="..\RomanNumeralGenerator.Services\RomanNumeralGenerator.Services.csproj" />
     <ProjectReference Include="..\RomanNumeralGenerator\RomanNumeralGenerator.csproj" />
   </ItemGroup>
 

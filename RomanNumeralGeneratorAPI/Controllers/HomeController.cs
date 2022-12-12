@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RomanNumeralGenerator;
 using RomanNumeralGenerator.Data;
+using RomanNumeralGenerator.Services;
 
 namespace RomanNumeralGeneratorAPI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly RomanConverterService _romanConverter;
+        private readonly ILogHistoryService _history;
 
-        public HomeController(RomanConverterService romanConverter)
+        public HomeController(ILogHistoryService history)
         {
-            _romanConverter = romanConverter;
+            _history = history;
         }
         public IActionResult About()
         {
@@ -26,18 +27,18 @@ namespace RomanNumeralGeneratorAPI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LogHistory log)
         {
-            if(log.Input is > 0 and < 4000)
+            if (log.Input is > 0 and < 4000)
             {
-                _romanConverter.AddLog(log);
+                //_romanConverter.AddLog(log);
+                _history.AddLog(log);
                 TempData["converted"] = $"{log.Input} in Roman numerals is {log.Output}";
             }
             return View();
         }
 
-        //GET
         public IActionResult History()
         {
-            IEnumerable<LogHistory> history = _romanConverter.History;
+            IEnumerable<LogHistory> history = _history.GetAll();
             return View(history.Reverse());
         }
     }
